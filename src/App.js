@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Panel from './components/Panel';
+import DrumMachine from './components/DrumMachine';
 
 const Display= React.lazy(() => import('./components/Display'));
 
@@ -13,10 +13,10 @@ class App extends React.Component {
 
   render()  {
     return (
-      <div id='drum-machine' className="App">
-        <Panel>
+      <div id='app' className="App">
+        <DrumMachine>
           <Display/>
-        </Panel>
+        </DrumMachine>
       </div>
     );
   }
