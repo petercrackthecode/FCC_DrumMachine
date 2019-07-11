@@ -1,3 +1,8 @@
+#app #drum-machine #controls #buttons .switch, #app #drum-machine #controls #buttons #volume-bar {
+  display: block;
+  text-align: center;
+}
+
 #app {
   width: 100vw;
   height: 100vh;
@@ -67,9 +72,13 @@
   display: flex;
   flex-direction: column;
   border: 3px solid grey;
+  padding: 10px;
+}
+#app #drum-machine #controls #buttons .switch {
+  padding: 20px;
 }
 #app #drum-machine #controls #buttons .switch input {
-  /* display: none; */
+  display: none;
 }
 #app #drum-machine #controls #buttons .switch input:checked + .theme {
   background-color: #03a9f4;
@@ -81,20 +90,20 @@
   width: 100px;
   height: 40px;
   position: relative;
-  background-color: #ccc;
+  background: #ccc;
   display: block;
   cursor: pointer;
   transition: background-color 0.4s;
-  border-radius: 50px;
+  border-radius: 20px;
 }
 #app #drum-machine #controls #buttons .switch .theme::before {
+  content: "";
   position: absolute;
   width: 32px;
   height: 32px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
-  content: "";
+  background: white;
   border-radius: 50%;
 }
 #app #drum-machine #controls > #key-panel, #app #drum-machine #controls > #buttons {

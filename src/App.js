@@ -25,6 +25,12 @@ class App extends React.Component {
     });
   };
 
+  handlePowerChange= () => {
+    this.setState(currentState => ({
+      m_isPowerOn: !currentState.m_isPowerOn,
+    }));
+  };
+
   render()  {
     return (
       <div id='app' className="App">
@@ -33,7 +39,7 @@ class App extends React.Component {
           <section id='controls'>
             <KeyPanel {...this.state}/>
             <div id='buttons'>
-              <Switch switchName='Power'/>
+              <Switch switchName='Power' onHandleChange={this.handlePowerChange} isPowerOn={this.state.m_isPowerOn}/>
               <VolumeBar handleVolumeChange={this.handleVolumeChange} m_volume={this.state.m_volume}/>
               {/*<Switch switchName='Bank'/>*/}
             </div>
