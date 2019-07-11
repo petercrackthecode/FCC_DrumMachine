@@ -1,10 +1,12 @@
-import React from 'react';
-import './App.css';
 import DrumMachine from './components/DrumMachine';
+import {Display} from './components/Display';
 
-const Display= React.lazy(() => import('./components/Display'));
+import React from 'react';
+import './styles/App.css';
 
-// const Panel= React.lazy(() => import('./components/Panel'));
+// const Display= React.lazy(() => import('./components/Display'));
+
+/* const Panel= React.lazy(() => import('./components/Panel')); */
 
 class App extends React.Component {
   state= {
