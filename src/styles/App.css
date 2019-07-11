@@ -68,8 +68,34 @@
   flex-direction: column;
   border: 3px solid grey;
 }
-#app #drum-machine #controls #buttons input {
+#app #drum-machine #controls #buttons .switch input {
+  /* display: none; */
+}
+#app #drum-machine #controls #buttons .switch input:checked + .theme {
+  background-color: #03a9f4;
+}
+#app #drum-machine #controls #buttons .switch input:checked + .theme::before {
+  left: 64px;
+}
+#app #drum-machine #controls #buttons .switch .theme {
+  width: 100px;
+  height: 40px;
+  position: relative;
+  background-color: #ccc;
+  display: block;
   cursor: pointer;
+  transition: background-color 0.4s;
+  border-radius: 50px;
+}
+#app #drum-machine #controls #buttons .switch .theme::before {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  content: "";
+  border-radius: 50%;
 }
 #app #drum-machine #controls > #key-panel, #app #drum-machine #controls > #buttons {
   margin: 10px;

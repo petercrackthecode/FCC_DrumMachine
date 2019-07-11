@@ -76,8 +76,40 @@
                 flex-direction: column;
                 @include Border(3px, grey);
 
-                input {
-                    cursor: pointer;
+                .switch  {
+                    input {
+                        /* display: none; */
+
+                        &:checked + .theme {
+                            background-color: #03a9f4;
+                        }
+
+                        &:checked + .theme::before {
+                            left: 64px;
+                        }
+                    }
+
+                    .theme {
+                        width: 100px;
+                        height: 40px;
+                        position: relative;
+                        background-color: #ccc;
+                        display: block;
+                        cursor: pointer;
+                        transition: background-color 0.4s;
+                        border-radius: 50px;
+
+                        &::before   {
+                            position: absolute;
+                            width: 32px;
+                            height: 32px;
+                            left: 4px;
+                            bottom: 4px;
+                            background-color: white;
+                            content: '';
+                            border-radius: 50%;
+                        }
+                    }
                 }
             }
 

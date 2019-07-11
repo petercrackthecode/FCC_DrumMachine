@@ -33,10 +33,9 @@ class App extends React.Component {
           <section id='controls'>
             <KeyPanel {...this.state}/>
             <div id='buttons'>
+              <Switch switchName='Power'/>
               <VolumeBar handleVolumeChange={this.handleVolumeChange} m_volume={this.state.m_volume}/>
-              {/*
-              <Switch switchName='Bank'/>
-              */}
+              {/*<Switch switchName='Bank'/>*/}
             </div>
           </section>
         </DrumMachine>
