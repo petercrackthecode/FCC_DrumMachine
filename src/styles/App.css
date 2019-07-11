@@ -38,9 +38,29 @@
   align-items: center;
   justify-content: space-between;
 }
+#app #drum-machine #controls #key-panel {
+  border: 3px solid grey;
+  border-radius: 10px;
+  display: flex;
+  max-width: 400px;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 10px;
+}
+#app #drum-machine #controls #key-panel .key {
+  list-style-type: none;
+  border: 3px solid red;
+  border-radius: 50%;
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+}
 #app #drum-machine #controls #buttons {
   display: flex;
   flex-direction: column;
+  border: 3px solid grey;
 }
 #app #drum-machine #controls #buttons input {
   cursor: pointer;

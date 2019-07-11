@@ -1,3 +1,7 @@
+@mixin Border($thickness, $color)   {
+    border: $thickness solid $color;
+}
+
 #app   {
     width: 100vw;
     height: 100vh;
@@ -11,7 +15,7 @@
 
     #drum-machine   {
         min-width: 400px;
-        border: 5px solid whitesmoke;
+        @include Border(5px, whitesmoke);
         border-radius: 10px;
         display: flex;
         flex-direction: column;
@@ -39,9 +43,31 @@
             align-items: center;
             justify-content: space-between;
 
+            #key-panel {
+                @include Border(3px, grey);
+                border-radius: 10px;
+                display: flex;
+                max-width: 400px;
+                flex-flow: row wrap;
+                justify-content: center;
+                padding: 10px;
+
+                .key    {
+                    list-style-type: none;
+                    @include Border(3px, red);
+                    border-radius: 50%;
+                    margin: 10px;
+                    width: 100px;
+                    height: 100px;
+                    line-height: 100px;
+                    text-align: center;
+                }
+            }
+
             #buttons {
                 display: flex;
                 flex-direction: column;
+                @include Border(3px, grey);
 
                 input {
                     cursor: pointer;
