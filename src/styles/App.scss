@@ -37,10 +37,19 @@
         #controls   {
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between;
 
-            #buttons input {
-                cursor: pointer;
+            #buttons {
+                display: flex;
+                flex-direction: column;
+
+                input {
+                    cursor: pointer;
+                }
+            }
+
+            & > #key-panel, & > #buttons    {
+                margin: 10px;
             }
         }
     }

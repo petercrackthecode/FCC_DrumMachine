@@ -36,10 +36,17 @@
 #app #drum-machine #controls {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+#app #drum-machine #controls #buttons {
+  display: flex;
+  flex-direction: column;
 }
 #app #drum-machine #controls #buttons input {
   cursor: pointer;
+}
+#app #drum-machine #controls > #key-panel, #app #drum-machine #controls > #buttons {
+  margin: 10px;
 }
 
 /*# sourceMappingURL=App.css.map */
