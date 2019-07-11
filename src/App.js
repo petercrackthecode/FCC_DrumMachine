@@ -1,5 +1,8 @@
 import DrumMachine from './components/DrumMachine';
 import {Display} from './components/Display';
+import {KeyPanel} from './components/KeyPanel';
+import {Switch} from './components/Switch';
+import {VolumeBar} from './components/VolumeBar';
 
 import React from 'react';
 import './styles/App.css';
@@ -10,14 +13,32 @@ import './styles/App.css';
 
 class App extends React.Component {
   state= {
-    isPowerOn: true,
+    m_isPowerOn: true,
+    m_note: '',
+    m_volume: 40,
+
+  };
+
+  handleVolumeChange= (volume) => {
+    this.setState({
+      m_volume: volume
+    });
   };
 
   render()  {
     return (
       <div id='app' className="App">
         <DrumMachine>
-          <Display/>
+          <Display {...this.state}/>
+          <section id='controls'>
+            <KeyPanel {...this.state}/>
+            <div id='buttons'>
+              <VolumeBar handleVolumeChange={this.handleVolumeChange} m_volume={this.state.m_volume}/>
+              {/*
+              <Switch switchName='Bank'/>
+              */}
+            </div>
+          </section>
         </DrumMachine>
       </div>
     );
