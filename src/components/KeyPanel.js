@@ -9,7 +9,7 @@ export function KeyPanel(props)    {
 
     return (
         <ul id='key-panel'>
-            {keys.map(character => <li key={character.id} className='key' data-key='' tabIndex='0'><strong>{character}</strong></li>)}
+            {keys.map(character => <li key={character.id} className='key' data-key={character.charCodeAt(0)} tabIndex='0'><strong>{character}</strong></li>)}
 
             <audio data-key="81" src="sounds/clap.wav"></audio>
             <audio data-key="87" src="sounds/hihat.wav"></audio>
