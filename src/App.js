@@ -14,7 +14,7 @@ import './styles/App.css';
 class App extends React.Component {
   state= {
     m_isPowerOn: true,
-    m_note: '',
+    m_notePlaying: '',
     m_volume: 40,
 
   };
@@ -31,17 +31,22 @@ class App extends React.Component {
     }));
   };
 
+  handleNoteChange= (notePlaying) => {
+    this.setState({
+      m_notePlaying: notePlaying,
+    });
+  };
+
   render()  {
     return (
       <div id='app' className="App">
         <DrumMachine>
           <Display {...this.state}/>
           <section id='controls'>
-            <KeyPanel {...this.state}/>
+            <KeyPanel {...this.state} onNoteChange={this.props.handleNoteChange}/>
             <div id='buttons'>
               <Switch switchName='Power' onHandleChange={this.handlePowerChange} isPowerOn={this.state.m_isPowerOn}/>
               <VolumeBar handleVolumeChange={this.handleVolumeChange} m_volume={this.state.m_volume}/>
-              {/*<Switch switchName='Bank'/>*/}
             </div>
           </section>
         </DrumMachine>

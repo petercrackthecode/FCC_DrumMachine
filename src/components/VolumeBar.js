@@ -7,7 +7,7 @@ export function VolumeBar(props)    {
 
     return (
         <div id='volume-bar'>
-            <label for='volume-bar'>Volume: {props.m_volume}</label><br/>
+            <label htmlFor='volume-bar'>Volume: {props.m_volume}</label><br/>
             <input name='volume-bar' type='range' min='0'
                 max='100' step='1' value={props.m_volume}
                 onInput={onVolumeChange}/>
