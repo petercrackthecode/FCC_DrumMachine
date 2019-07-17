@@ -3,44 +3,49 @@ import React from 'react';
 export class KeyPanel extends React.Component   {
     constructor(props)  {
         super(props);
-        this.audio= '';
         this.keys= ['Q', 'W', 'E', 'A', 'S','D', 'Z', 'X', 'C'];
+        this.audioPath= [
+            "../sounds/clap.wav", "../sounds/hihat.wav", "../sounds/kick.wav", "../sounds/openhat.wav",
+            "../sounds/boom.wav", "../sounds/ride.wav", "../sounds/snare.wav", "../sounds/tom.wav",
+            "../sounds/tink.wav"
+        ];
     }
 
     componentDidUpdate()    {
 
     }
 
-    playNote= (event) => {
-        console.log("keyCode= " + event.keyCode);
-        console.log("event= " + event);
-        this.audio= new Audio(document.querySelector(`audio[data-key= "${event.keyCode}"]`)
-                                      .getAttribute('src'));
-        console.log("this.audio= " + this.audio);
-        this.props.onNoteChange(event.keyCode);
+    playNoteOnKeyDown= (event) => {
+        console.log("key is " + event.key);
+        let audio= document.getElementById(event.key.toUpperCase());
+        if (!audio) return;
+        audio.currentTime= 0;
+        audio.play();
+        this.props.onNoteChange(event.key.toUpperCase());
     };
+
+    playNoteOnClick= (event) => {
+        console.log(event.currentTarget.id.toString()[0]);
+        let audio= document.getElementById(event.currentTarget.id.toString()[0]);
+        if (!audio) return;
+        audio.currentTime= 0;
+        audio.play();
+        this.props.onNoteChange(event.currentTarget.id.toString()[0]);
+    }
 
     render() {
         return (
             <ul id='key-panel'>
-                {this.keys.map(character =>
+                {this.keys.map((character, index) =>
                     <li key={character}
-                        className='key drum-pad'
-                        data-key={character.charCodeAt(0)}
+                        id={`${character}-drumpad`}
+                        className='drum-pad'
                         tabIndex='0'
-                        /* onClick= {this.playNote} */
-                        onKeyDown= {this.playNote}
-                        ><strong>{character}</strong></li>)}
-    
-                <audio data-key="81" src="sounds/clap.wav"></audio>
-                <audio data-key="87" src="sounds/hihat.wav"></audio>
-                <audio data-key="69" src="sounds/kick.wav"></audio>
-                <audio data-key="65" src="sounds/openhat.wav"></audio>
-                <audio data-key="83" src="sounds/boom.wav"></audio>
-                <audio data-key="68" src="sounds/ride.wav"></audio>
-                <audio data-key="90" src="sounds/snare.wav"></audio>
-                <audio data-key="88" src="sounds/tom.wav"></audio>
-                <audio data-key="67" src="sounds/tink.wav"></audio>
+                        onClick= {this.playNoteOnClick}
+                        onKeyDown= {this.playNoteOnKeyDown}>
+                        <strong>{character}</strong>
+                        <audio id={character} className='clip' src={this.audioPath[index]}></audio>
+                    </li>)}
             </ul>
         );
     }

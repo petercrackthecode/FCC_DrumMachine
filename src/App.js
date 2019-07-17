@@ -43,7 +43,7 @@ class App extends React.Component {
         <DrumMachine>
           <Display {...this.state}/>
           <section id='controls'>
-            <KeyPanel {...this.state} onNoteChange={this.props.handleNoteChange}/>
+            <KeyPanel {...this.state} onNoteChange={this.handleNoteChange}/>
             <div id='buttons'>
               <Switch switchName='Power' onHandleChange={this.handlePowerChange} isPowerOn={this.state.m_isPowerOn}/>
               <VolumeBar handleVolumeChange={this.handleVolumeChange} m_volume={this.state.m_volume}/>
