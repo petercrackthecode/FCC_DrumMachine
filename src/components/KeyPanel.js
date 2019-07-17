@@ -13,7 +13,7 @@ import tom from '../sounds/tom.wav';
 export class KeyPanel extends React.Component   {
     constructor(props)  {
         super(props);
-        this.keys= ['Q', 'W', 'E', 'A', 'S','D', 'Z', 'X', 'C'];
+        this.keys= ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'];
         this.audioPath= [
             hihat, boom, clap, kick,
             openhat, ride, snare, tink,
@@ -32,7 +32,7 @@ export class KeyPanel extends React.Component   {
     playNoteOnKeyDown= (event) => {
         const key= event.key.toUpperCase();
         const src= document.getElementById(key).src;
-        let audio= new Audio(src);
+        let audio= document.getElementById(key);
         if (!audio) return;
         audio.currentTime= 0;
         audio.play();
