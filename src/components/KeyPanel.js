@@ -1,23 +1,38 @@
 import React from 'react';
 
+import hihat from '../sounds/hihat.wav';
+import boom from '../sounds/boom.wav';
+import clap from '../sounds/clap.wav';
+import kick from '../sounds/kick.wav';
+import openhat from '../sounds/openhat.wav';
+import ride from '../sounds/ride.wav';
+import snare from '../sounds/snare.wav';
+import tink from '../sounds/tink.wav';
+import tom from '../sounds/tom.wav';
+
 export class KeyPanel extends React.Component   {
     constructor(props)  {
         super(props);
         this.keys= ['Q', 'W', 'E', 'A', 'S','D', 'Z', 'X', 'C'];
         this.audioPath= [
-            "../sounds/clap.wav", "../sounds/hihat.wav", "../sounds/kick.wav", "../sounds/openhat.wav",
-            "../sounds/boom.wav", "../sounds/ride.wav", "../sounds/snare.wav", "../sounds/tom.wav",
-            "../sounds/tink.wav"
+            hihat, boom, clap, kick,
+            openhat, ride, snare, tink,
+            tom
         ];
     }
 
-    componentDidUpdate()    {
+    componentDidMount()    {
+        document.addEventListener('keydown', this.playNoteOnKeyDown);
+    }
 
+    componentWillUnmount()  {
+        document.removeEventListener('keydown');
     }
 
     playNoteOnKeyDown= (event) => {
-        console.log("key is " + event.key);
-        let audio= document.getElementById(event.key.toUpperCase());
+        const key= event.key.toUpperCase();
+        const src= document.getElementById(key).src;
+        let audio= new Audio(src);
         if (!audio) return;
         audio.currentTime= 0;
         audio.play();
@@ -25,26 +40,27 @@ export class KeyPanel extends React.Component   {
     };
 
     playNoteOnClick= (event) => {
-        console.log(event.currentTarget.id.toString()[0]);
-        let audio= document.getElementById(event.currentTarget.id.toString()[0]);
+        const key= event.currentTarget.dataset.key;
+        let audio= document.getElementById(key);
+        console.log(audio);
         if (!audio) return;
         audio.currentTime= 0;
         audio.play();
-        this.props.onNoteChange(event.currentTarget.id.toString()[0]);
+        this.props.onNoteChange(key);
     }
 
     render() {
         return (
             <ul id='key-panel'>
                 {this.keys.map((character, index) =>
-                    <li key={character}
-                        id={`${character}-drumpad`}
+                    <li key={index}
+                        data-key={character}
+                        id={`drumpad-${character}`}
                         className='drum-pad'
                         tabIndex='0'
-                        onClick= {this.playNoteOnClick}
-                        onKeyDown= {this.playNoteOnKeyDown}>
+                        onClick= {this.playNoteOnClick}>
                         <strong>{character}</strong>
-                        <audio id={character} className='clip' src={this.audioPath[index]}></audio>
+                        <audio id={character} className='clip' src={this.audioPath[index]}/>
                     </li>)}
             </ul>
         );
