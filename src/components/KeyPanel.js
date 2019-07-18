@@ -29,24 +29,22 @@ export class KeyPanel extends React.Component   {
         document.removeEventListener('keydown');
     }
 
-    playNoteOnKeyDown= (event) => {
-        const key= event.key.toUpperCase();
-        const src= document.getElementById(key).src;
+    playNote= (key) => {
         let audio= document.getElementById(key);
-        if (!audio) return;
-        audio.currentTime= 0;
-        audio.play();
-        this.props.onNoteChange(event.key.toUpperCase());
-    };
-
-    playNoteOnClick= (event) => {
-        const key= event.currentTarget.dataset.key;
-        let audio= document.getElementById(key);
-        console.log(audio);
         if (!audio) return;
         audio.currentTime= 0;
         audio.play();
         this.props.onNoteChange(key);
+    }
+
+    playNoteOnKeyDown= (event) => {
+        const key= event.key.toUpperCase();
+        this.playNote(key);
+    };
+
+    playNoteOnClick= (event) => {
+        const key= event.currentTarget.dataset.key;
+        this.playNote(key);
     }
 
     render() {
