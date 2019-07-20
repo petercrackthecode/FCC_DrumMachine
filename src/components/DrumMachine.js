@@ -1,9 +1,5 @@
-import React from 'react';
+import React from "react";
 
-export default function DrumMachine(props)    {
-    return (
-        <div id="drum-machine">
-            {props.children}
-        </div>
-    );
+export default function DrumMachine(props) {
+  return <div id="drum-machine">{props.children}</div>;
 }
